@@ -111,6 +111,9 @@ def predict(
         "Saturday": 5,
         "Sunday": 6,
         }[input_date.strftime("%A")]
+        weekofyear = input_date.isocalendar().week
+        dayofyear = input_date.dayofyear
+        dayofmonth = input_date.day
 
         features = {
         "item_id": [item_id],
@@ -119,6 +122,9 @@ def predict(
         "quarter": [quarter],
         "month": [month],
         "day_of_week": [day_of_week],
+        "weekofyear": [weekofyear],
+        "dayofyear": [dayofyear],
+        "dayofmonth": [dayofmonth],
         }
         obs = pd.DataFrame(features)
         pred = sgd_pipe.predict(obs)
